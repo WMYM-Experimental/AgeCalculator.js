@@ -17,22 +17,38 @@
                 <h1>Age Calculator</h1>
             </header>
             <div class="calc__cont">
-                <!--
-                <label class="calculator__inputs-container flex_centering">
-                    <input placeholder="Day" type="text" id="day">
-                    <input placeholder="Month" type="text" id="month">
-                    <input placeholder="Year" type="text" id="year">
-                </label>
-                -->
+
+                <div class="input_container flex_centering">
+                    <input type="date" id="start-date-input" onclick="reset()">
+                </div>
+
                 <div class="send_cont flex_centering">
+
                     <div class="calculator__submit flex_centering">
                         <button id="send" class="btn">Calculate</button>
                     </div>
-                    <div class="response flex_centering">
-                        <span class="calculator__display flex_centering">
-                            Your Age is:
-                        </span>
+
+                    <div class="output flex_centering">
+                        <div class="output_dates">
+                            <span id="years" class="flex_centering">
+                                _
+                            </span><br>
+                            <h3>Years</h3>
+                        </div>
+                        <div class="output_dates">
+                            <span id="months" class="flex_centering">
+                                _
+                            </span><br>
+                            <h3>Months</h3>
+                        </div>
+                        <div class="output_dates">
+                            <span id="days" class="flex_centering">
+                                _
+                            </span><br>
+                            <h3>Days</h3>
+                        </div>
                     </div>
+
                 </div>
             </div>
         </div>
