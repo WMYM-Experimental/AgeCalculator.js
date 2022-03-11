@@ -1,5 +1,12 @@
+// GLOBAL VARIABLES
 const calc = document.getElementById("send");
 const input = document.getElementById("date-input");
+
+// UTILITIES FUNCTIONS
+
+const reset = () => {
+  // reset values
+};
 
 const calculateAge = () => {
   let birthDate = new Date(document.getElementById("date-input").value);
@@ -27,9 +34,8 @@ const calculateAge = () => {
   console.log(today);
 };
 
-const reset = () => {
-  input.textContent = 0;
-};
+// LOGIC FUNCTIONS
 
+// EVENTS
 calc.addEventListener("click", calculateAge);
 input.addEventListener("click", reset);
