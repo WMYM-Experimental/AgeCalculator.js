@@ -9,7 +9,14 @@ const reset = () => {
   out.forEach((e) => {
     e.textContent = "_";
   });
-  console.log(out);
+  input.value = "2002-01-24";
+};
+
+const showResult = (date) => {
+  // reset values
+  document.getElementById("years").textContent = date.year;
+  document.getElementById("months").textContent = date.month;
+  document.getElementById("days").textContent = date.day;
 };
 
 const checkDateValidity = (birthDate, todayDate) => {
@@ -21,12 +28,21 @@ const checkDateValidity = (birthDate, todayDate) => {
 };
 
 const isLeapYear = (date) => {
+  if (date.year % 400 == 0) {
+    date.leapYear = true;
+  } else if (date.year % 100 == 0) {
+    date.leapYear = false;
+  } else if (date.year % 4 == 0) {
+    date.leapYear = true;
+  } else {
+    date.leapYear = false;
+  }
+
   if (date.leapYear) {
     months[date.month] = 29;
   } else {
     months[date.month] = 28;
   }
-  return false;
 };
 
 const calculateAge = () => {
@@ -49,20 +65,19 @@ const calculateAge = () => {
     leapYear: false,
   };
 
-  console.log(birth);
-  console.log(today);
-  console.log(validBirthDate);
-
   if (validBirthDate) {
     // start calculating
     birth.year = today.year - birth.year;
 
-    isLeapYear(birth);
+    isLeapYear(today);
 
     if (today.month >= birth.month) {
       birth.month = today.month - birth.month;
     } else {
       birth.year = birth.year - 1;
+      if (birth.year < 0) {
+        birth.year = 0;
+      }
       birth.month = 12 + today.month - birth.month;
     }
 
@@ -70,20 +85,13 @@ const calculateAge = () => {
       birth.day = today.day - birth.day;
     } else {
       birth.month = birth.month - 1;
-      birth.day = months[today.month - 1] + today.day - birth.day;
+      birth.day = months[today.month] + today.day - birth.day;
     }
   } else {
-    // reset if its not
-    reset();
-    input.value = "2002-01-24";
+    reset(); // reset if its not
   }
-
-  console.log(birth);
-  console.log(today);
-  console.log(validBirthDate);
+  showResult(birth);
 };
-
-// LOGIC FUNCTIONS
 
 // EVENTS
 calc.addEventListener("click", calculateAge);
