@@ -85,6 +85,9 @@ const calculateAge = () => {
       birth.day = today.day - birth.day;
     } else {
       birth.month = birth.month - 1;
+      if (birth.month < 0) {
+        birth.month = 0;
+      }
       birth.day = months[today.month] + today.day - birth.day;
     }
   } else {
